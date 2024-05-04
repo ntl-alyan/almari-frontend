@@ -1,0 +1,83 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('/loginbannerImage.jpeg'); 
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.9); 
+  max-width: 400px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Center text within the container */
+}
+
+h2 {
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center-align form content */
+}
+
+.input-group {
+  margin: 10px 0;
+  width: 100%; /* Make input groups take up the full width */
+}
+
+label {
+  font-weight: bold;
+  text-align: left; /* Left-align labels */
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+.custom-button {
+  margin-right: 2px;
+  margin-bottom: 4px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  background-color: #34D399; /* Replace with your desired color */
+  padding: 0.5rem 2rem;
+  text-align: center;
+  color: #fff;
+  transition: transform 150ms ease-in-out, background-color 150ms ease-in-out;
+}
+
+.custom-button:hover {
+  transform: translateY(1px);
+  background-color: #10B981; /* Replace with your desired hover color */
+}
