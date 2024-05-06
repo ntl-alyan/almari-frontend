@@ -22,7 +22,7 @@ export default function MatchingItems ()  {
 				image: element.image.includes('https:') ? element.image : 'https:'+element.image ,
 				title:element.title,
 				description:element.description,
-				price:element.price,
+				price:element.price.replace('PKR ', '')
 			})
 		}); 
 		setCardData(productData);

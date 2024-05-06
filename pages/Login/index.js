@@ -53,10 +53,9 @@ const LoginPage = () => {
 		const response=await almariService.loginCustomer(payload);
 		if(response)
 		{
-		
 			if(response.status==="SUCCESS"){
 				toast.success("Login Successfull");
-				Cookies.set("user", loginState.EMAIL, { expires: 7 }); // Expires in 7 days
+				Cookies.set("user", loginState.EMAIL, { expires: 1 / 24 }); // Expires in 1 hour
 				handleLogin();
 			  }
 			  else{
