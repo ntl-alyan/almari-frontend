@@ -3,6 +3,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import React ,{useState,useEffect} from "react";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from 'react-toastify';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 
 function MyApp({ Component, pageProps }) {
     const [queryClient] = useState(

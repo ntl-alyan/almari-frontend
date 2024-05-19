@@ -10,7 +10,7 @@ export const almariService={
 }
 
 const almariURL='http://localhost:3020/';
-const flaskURL='http://localhost:5000/'
+const flaskURL='http://localhost:5001/'
 
 async function loginCustomer(params)
 {
@@ -80,7 +80,6 @@ async function getCartItems(params){
 		headers: {
 		  'Content-Type': 'application/json',
 		},
-		
 	  };
 	  
 	  try {

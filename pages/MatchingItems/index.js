@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 
 export default function MatchingItems ()  {
     const router = useRouter();
-    let { image_url } = router.query;
+    let { image_url,type } = router.query;
 
 	const [data, setData] = useState([]);
 	const [cardData,setCardData]=useState([]);
@@ -29,8 +29,11 @@ export default function MatchingItems ()  {
 	}
 
   const fetchData = async () => {
+    const typesArray = type ? type.split(',') : [];
+    
     const payload={
-        image_url:image_url
+        image_url:image_url,
+        type:typesArray
     }
     const response=await almariService.predictModel(payload);
 

@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { almariService } from '../../services/customer';
 import Router from "next/router";
 import { useQueryClient } from "react-query";
+import Link from 'next/link';
 
 const initialState = {
   ID:'',
@@ -23,6 +24,7 @@ export default function AddToCartComponent({ data }) {
   const [productDetailModal, setProductDetailModal] = useState(false);
   const [showReceiptModal, setShowReceiptlModal] = useState(false);
   const [productDetails, setProductDetails] = useState(initialState);
+  const [types, setTypes] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
 
   const viewProductDetails = (id, title, description, price, image) => {
@@ -95,13 +97,26 @@ export default function AddToCartComponent({ data }) {
     setTotalAmount(amount);
   }
 
+  const handleCategoryChange = (event) => {
+    const category = event.target.value;
+    setTypes((prevTypes) =>
+        event.target.checked
+            ? [...prevTypes, category]
+            : prevTypes.filter((type) => type !== category)
+    );
+};
+
   const handleShowReceipt = () => {
     setShowReceiptlModal(true);
   };
 
   const handleMatching =  () =>{
     try{
-      Router.push(`/MatchingItems?image_url=${productDetails.IMAGE}`)
+      if(types.length===0)
+        {
+          return toast.error("Please Select A Type First");
+        }
+      Router.push(`/MatchingItems?image_url=${productDetails.IMAGE}&type=${types}`)
     }
     catch(error)
     {
@@ -120,6 +135,7 @@ export default function AddToCartComponent({ data }) {
                 <Image src={item.IMAGE} alt={item.TITLE} width={200} height={200} />
               </div>
               <h4 className="item-price">Price: PKR {item.PRICE}</h4>
+              
               <button
                 className="view-item-button"
                 onClick={() => viewProductDetails(item.ID, item.TITLE, item.DESCRIPTION, item.PRICE, item.IMAGE)}
@@ -148,9 +164,9 @@ export default function AddToCartComponent({ data }) {
 
         <div className="d-flex justify-content-center">
         <button type="button" className="btn btn-info mb-3 mr-3 flex-right">
-            <a href="/Home" style={{ color: "white" }}>
+            <Link href="/Home" style={{ color: "white" }}>
               Back to Home Page
-            </a>
+            </Link>
           </button>
         </div>
         </div>
@@ -180,16 +196,31 @@ export default function AddToCartComponent({ data }) {
                     PKR. {productDetails.PRICE}
                   </p>
                 </div>
-
-                <div className="mt-8 flex flex-col sm:flex-row">
-                <button
-                  type="button"
-                    onClick={handleMatching}
-                    className="btn btn-info"
-                  >
-                    View Matching Items
+                <div className="description-wrapper mt-4 p-3 border rounded bg-light">
+                <p className="font-sans text-2xl tracking-normal mb-3">Find Matching Items By:</p>
+                  <div className="row g-3">
+                      {["Shoes", "Lawn", "Suit", "Trousers"].map((category) => (
+                          <div className="col-sm-6 col-md-4 col-lg-3" key={category}>
+                              <div className="form-check">
+                                  <input
+                                      className="form-check-input"
+                                      type="checkbox"
+                                      name="CATEGORY"
+                                      id={`${category.toLowerCase()}Radio`}
+                                      value={category}
+                                      onChange={handleCategoryChange}
+                                  />
+                                  <label className="form-check-label" htmlFor={`${category.toLowerCase()}Radio`}>
+                                      {category}
+                                  </label>
+                              </div>
+                          </div>
+                      ))}
+                  </div>
+                  <button onClick={handleMatching} className="btn btn-primary mt-3">
+                      Find Matching Items
                   </button>
-                </div>
+              </div>
                 
                 <div className="mt-8 flex flex-col sm:flex-row">
                 <button

@@ -13,13 +13,17 @@ export default function Suits ()  {
 	const prepareCardData=(data)=>{
 		let productData=[];
 		data.forEach((element,index) => {
-			productData.push({
-				image:element.image,
-				title:element.title,
-				description:element.description,
-				price:element.Price,
-			})
-		}); 
+      if(element.title)
+        {
+          productData.push({
+            image:element.image,
+            title:element.title,
+            description:element.description,
+            price:element.Price,
+            platform:element.platform
+          })
+        }
+		});
 		
 		setCardData(productData);
 	}

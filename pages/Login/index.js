@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Cookies from 'js-cookie';
 import { almariService } from '../../services/customer';
 import { ToastContainer, toast } from 'react-toastify';
+import Link from 'next/link';
 
 
 
@@ -68,9 +69,7 @@ const LoginPage = () => {
 	}
 
 	return (
-		// <Layout>
-		// 		<section className="vh-100" style={{ backgroundColor: '#FFFFFF' }}>
-		// 	<ToastContainer/>
+	
 		
 		<div className="container py-5 border mt-5" style={{boxShadow: "0px 0px 30px rgba(0, 0, 0, 0.3)"}}>
 		<div className="row justify-content-center">
@@ -120,7 +119,7 @@ const LoginPage = () => {
 									<div className="text-center mt-4">
 										<a href="#" className="text-muted">Forgot password?</a>
 									</div>
-									<p className="text-center mt-3 mb-0">Don't have an account? <br></br> <a href="/Signup" onClick={handleRegistration}>Register here</a></p>
+									<p className="text-center mt-3 mb-0">{"Don't have an account?"} <br></br> <Link href="/Signup" onClick={handleRegistration}>Register here</Link></p>
 								</form>
 							</div>
 						</div>

@@ -13,12 +13,17 @@ export default function Lawns ()  {
 	const prepareCardData=(data)=>{
 		let productData=[];
 		data.forEach((element,index) => {
-			productData.push({
-				image:'https:'+element.image,
-				title:element.title,
-				description:element.description,
-				price:element.price,
-			})
+      if(element.title)
+        {
+          productData.push({
+            image:'https:'+element.image,
+            title:element.title,
+            description:element.description,
+            price:element.price,
+            platform:element.platform
+          })
+        }
+			
 		}); 
 		setCardData(productData);
 	}

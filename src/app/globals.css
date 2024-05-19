@@ -8,32 +8,53 @@
   }
 }
 
+
+
 @layer components {
   .header_top__icon_wrapper {
     @apply bg-gray-200 rounded-md p-[6px] text-[14px] cursor-pointer hover:bg-accent hover:text-white;
   }
 
-  .navbar__link:hover {
-    color: #ff8f9c;
-    transition: all 0.4s;
-  }
+  /* Navbar Link Styling */
+.navbar__link {
+  position: relative;
+  color: #333; /* Darker shade for better contrast */
+  text-decoration: none;
+  padding: 0.5rem 0;
+  transition: color 0.4s ease;
+  font-size: 1.1rem; /* Slightly larger font for better readability */
+}
 
-  .navbar__link::after {
-    position: absolute;
-    content: "";
-    background-color: #ff8f9c;
-    height: 3px;
-    width: 100%;
-    bottom: -5px;
-    left: 0;
-    scale: 0;
-    transform-origin: left;
-    transition: all 0.4s;
-  }
+/* Hover effect for text color */
+.navbar__link:hover {
+  color: #ff8f9c;
+}
 
-  .navbar__link:hover::after {
-    scale: 1;
+/* Hover effect for underline */
+.navbar__link::after {
+  position: absolute;
+  content: "";
+  background-color: #ff8f9c;
+  height: 3px;
+  width: 100%;
+  bottom: -5px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.navbar__link:hover::after {
+  transform: scaleX(1);
+}
+
+
+/* Media Queries for better responsiveness */
+@media (max-width: 1024px) {
+  .hidden {
+    display: none;
   }
+}
 
   
 }

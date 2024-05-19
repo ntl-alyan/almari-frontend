@@ -8,13 +8,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { almariService } from '../../services/customer';
 import  Router  from "next/router";
 import { useQueryClient } from "react-query";
+import Slider from "react-slick";
 
 const initialState=
 	{
 		TITLE:"",
 		IMAGE:"",
 		PRICE:"",
-		DESCRIPTION:""
+		DESCRIPTION:"",
+    PLATFORM:""
 	}
 
 export default function CardComponent({ data }) {
@@ -22,16 +24,48 @@ export default function CardComponent({ data }) {
   const [productDetailModal, setProductDetailModal] = useState(false);
   const [productDetails,setProductDetails]=useState(initialState);
   
-
-  const viewProductDetails = (title, description, price, image) => {
+  const sliderSettings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
+  const viewProductDetails = (title, description, price, image, platform) => {
 	setProductDetailModal(true);
 	setProductDetails(
 		{
 			TITLE:title,
 			IMAGE:image,
 			PRICE:price,
-			DESCRIPTION:description
-			
+			DESCRIPTION:description,
+			PLATFORM:platform
 		})
 	
   };
@@ -82,10 +116,11 @@ export default function CardComponent({ data }) {
       <div className="image-container">
         <Image src={item.image} alt={item.title} width={200} height={200} />
       </div>
+      
       <h4 className="item-price">Price: PKR {item.price}</h4>
       
       <button type="button" className="btn btn-success"
-        onClick={() => viewProductDetails(item.title, item.description, item.price, item.image)}
+        onClick={() => viewProductDetails(item.title, item.description, item.price, item.image,item.platform)}
       >View Item</button>
     </div>
   ))}
@@ -168,6 +203,9 @@ export default function CardComponent({ data }) {
 		  <div className="flex flex-col mt-5 md:flex-row">
 			<h2 className="mb-2 text-2xl font-black">{productDetails.TITLE}</h2>
 			{/* <span className="ml-2 text-xs uppercase">Tailwind</span> */}
+		  </div>
+      <div className="description-wrapper mt-2">
+			<p className="font-sans text-2xl tracking-normal">Product By: <b>{productDetails.PLATFORM}</b></p>
 		  </div>
 		  <div className="description-wrapper">
 			<p className="font-sans text-base tracking-normal">{productDetails.DESCRIPTION}</p>

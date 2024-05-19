@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import Layout from '../../src/app/layout'
 import { almariService } from "../../services/customer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faEnvelope, faLock ,faCity} from "@fortawesome/free-solid-svg-icons";
+import { faUser, faEnvelope, faLock ,faCity , faBuilding  } from "@fortawesome/free-solid-svg-icons";
 
 const Signup = () => {
 
@@ -77,7 +77,7 @@ const Signup = () => {
 		FIRST_NAME: faUser,
 		LAST_NAME: faUser,
 		AGE: faUser,
-		CITY: faCity,
+		CITY: faBuilding,
 		EMAIL: faEnvelope,
 		PASSWORD: faLock,
 	  };
@@ -92,96 +92,99 @@ const Signup = () => {
 	  };
 	  
 	  const fieldLabels = {
-		FIRST_NAME: "First Name",
-		LAST_NAME: "Last Name",
-		AGE: "Age",
-		CITY: "City",
-		EMAIL: "Email",
-		PASSWORD: "Password",
+		FIRST_NAME: "Enter First Name",
+		LAST_NAME: "Enter Last Name",
+		AGE: "Enter Age",
+		CITY: "Enter City",
+		EMAIL: "Enter Email",
+		PASSWORD: "Enter Password",
 	  };
 
 
 	  return (
-		<section className="signup-section">
-		  <div className="container">
-			<div className="row justify-content-center">
-			  <div className="col-lg-6">
-				<div className="card signup-card">
-				  <div className="card-body">
-					<h2 className="card-title text-center mb-4">Create Your Account</h2>
-					<form className="mx-1 mx-md-6 ">
-						  {["FIRST_NAME", "LAST_NAME", "AGE", "CITY", "EMAIL", "PASSWORD"].map((fieldName) => (
-							<div className="d-flex flex-row align-items-center  mb-2" key={fieldName}>
-							  <FontAwesomeIcon icon={icons[fieldName]} className="fa-lg mb-4 me-3 fa-fw" />
-							  <div className="form-outline flex-fill mb-0 col-md-12">
-								<input
-								  name={fieldName}
-								  onChange={handleInput}
-								  type={inputTypes[fieldName]}
-								  id={`form3Example${fieldName}c`}
-								  className="form-control"
-								/>
-								<label className="form-label" htmlFor={`form3Example${fieldName}c`}>
-								  {fieldLabels[fieldName]}
-								</label>
-							  </div>
-							</div>
-						  ))}
-	
-						  <div className="d-flex flex-row align-items-center mb-2">
-							<div className="form-outline flex-fill mb-0">
-							  <label className="form-label" htmlFor="form3Example4cd">
-								Gender
-							  </label>
-							</div>
-						  </div>
-	
-						  <div className="d-flex flex-row align-items-center mb-2">
-							{["Male", "Female", "Other"].map((gender) => (
-							  <div className="form-check form-check-inline" key={gender}>
-								<input
-								  className="form-check-input"
-								  type="radio"
-								  name="GENDER"
-								  id={`${gender.toLowerCase()}Radio`}
-								  value={gender}
-								  onChange={handleGenderChange}
-								/>
-								<label className="form-check-label" htmlFor={`${gender.toLowerCase()}Radio`}>
-								  {gender}
-								</label>
-							  </div>
-							))}
-						  </div>
-	
-						  <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-							<button
-							  type="button"
-							  className="btn btn-primary btn-lg"
-							  onClick={signupUser}
-							>
-							  Register
-							</button>
-						  </div>
-						  </form>
-						<p className="text-center mt-3">
-						Already have an account?{" "}
-						<a href="#" onClick={handleLogin}>
-							Login here
-						</a>
-						</p>
-				  </div>
-				</div>
-			  </div>
-			  <div className="col-lg-6">
-							<div className="illustration">
-							<img src="/SignupImage.jpeg" alt="Signup" />
+		<div className="container py-5 border mt-5" style={{boxShadow: "0px 0px 30px rgba(0, 0, 0, 0.3)"}}>
+		<div className="row justify-content-center">
+			<div className="col-md-9 shadow">
+				<div className="card border-0 rounded-lg">
+					<div className="row">
+						<div className="col-md-6 d-flex align-items-center justify-content-center text-white shadow" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/SignupImage.jpeg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+							<div className="p-5">
+								<h2 className="display-4 mb-4" style={{ fontSize: '2.5rem' }}>Welcome To Almari</h2>
+								<p className="lead" style={{ fontSize: '1.25rem' }}>Create your new account.</p>
 							</div>
 						</div>
-			  </div>
+	
+						<div className="col-md-6">
+							<div className="card signup-card">
+							<div className="card-body">
+								<h2 className="card-title text-center mb-4">Create Your Account</h2>
+								<form className="mx-1 mx-md-6 ">
+									{["FIRST_NAME", "LAST_NAME", "AGE", "CITY", "EMAIL", "PASSWORD"].map((fieldName) => (
+										<div className="d-flex flex-row align-items-center  mb-2" key={fieldName}>
+										<FontAwesomeIcon icon={icons[fieldName]} className="fa-lg mb-4 " />
+										<div className="form-outline flex-fill mb-2 col-md-12 mr-2">
+											<input
+											name={fieldName}
+											onChange={handleInput}
+											placeholder={fieldLabels[fieldName]}
+											type={inputTypes[fieldName]}
+											id={`form3Example${fieldName}c`}
+											className="form-control"
+											/>
+										</div>
+										</div>
+									))}
+				
+									<div className="d-flex flex-row align-items-center mb-2">
+										<div className="form-outline flex-fill mb-0">
+										<label className="form-label" htmlFor="form3Example4cd">
+											Gender
+										</label>
+										</div>
+									</div>
+				
+									<div className="d-flex flex-row align-items-center mb-2">
+										{["Male", "Female", "Other"].map((gender) => (
+										<div className="form-check form-check-inline" key={gender}>
+											<input
+											className="form-check-input"
+											type="radio"
+											name="GENDER"
+											id={`${gender.toLowerCase()}Radio`}
+											value={gender}
+											onChange={handleGenderChange}
+											/>
+											<label className="form-check-label" htmlFor={`${gender.toLowerCase()}Radio`}>
+											{gender}
+											</label>
+										</div>
+										))}
+									</div>
+	
+									<div className="d-flex justify-content-center mx-4 mt-4 mb-3 mb-lg-4">
+										<button
+										type="button"
+										className="btn btn-primary btn-lg"
+										onClick={signupUser}
+										>
+										Register
+										</button>
+									</div>
+									</form>
+									<p className="text-center mt-3">
+									Already have an account?{" "}
+									<a href="#" onClick={handleLogin}>
+										Login here
+									</a>
+									</p>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		
-		</section>
+		</div>
+	</div>
 	  );
 };
 
