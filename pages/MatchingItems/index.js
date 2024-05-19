@@ -18,12 +18,17 @@ export default function MatchingItems ()  {
 	const prepareCardData=(data)=>{
 		let productData=[];
 		data.forEach((element,index) => {
-			productData.push({
-				image: element.image.includes('https:') ? element.image : 'https:'+element.image ,
-				title:element.title,
-				description:element.description,
-				price:element.price.replace('PKR ', '')
-			})
+      if(element.title)
+        {
+          productData.push({
+            image: element.image.includes('https:') ? element.image : 'https:'+element.image ,
+            title:element.title,
+            description:element.description,
+            price:element.price.replace('PKR ', ''),
+            platform:element.platform
+          })
+        }
+			
 		}); 
 		setCardData(productData);
 	}
@@ -39,6 +44,7 @@ export default function MatchingItems ()  {
 
     if(response)
     {
+      console.log(response)
         prepareCardData(response.matching_rows);
     }
   };
