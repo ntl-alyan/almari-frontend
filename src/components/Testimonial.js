@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 export default function Testimonial() {
@@ -8,7 +9,7 @@ export default function Testimonial() {
         <div className="col">
           <div className="border border-2 border-gray-300 rounded-2 p-4 p-lg-0 text-center">
             <div className="d-flex flex-column align-items-center gap-1">
-              <img
+              <Image
                 className="rounded-circle"
                 src="/speed.jpeg"
                 width={80}
@@ -17,7 +18,7 @@ export default function Testimonial() {
               />
               <h2 className="text-gray-500 fw-bold fs-5">Hammad Tahir</h2>
               <p className="fs-6">CEO & Founder Invision</p>
-              <img
+              <Image
                 className="py-2"
                 src="/quotes.svg"
                 width={30}
@@ -25,7 +26,7 @@ export default function Testimonial() {
                 alt="quotes"
               />
               <p className="text-gray-500 fs-6">
-                Fashion is like eating, you shouldn't stick to the same menu.
+                {"Fashion is like eating, you shouldn't stick to the same menu."}
               </p>
             </div>
           </div>

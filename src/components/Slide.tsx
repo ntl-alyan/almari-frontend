@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 interface propsType {
@@ -20,7 +21,7 @@ const Slide: React.FC<propsType> = ({ img, title, mainTitle, price }) => {
         <div className="btn btn-accent btn-lg rounded-pill mt-2">Shop Now</div>
       </div>
 
-      <img
+      <Image
         className="w-100 h-300 h-md-auto rounded-xl object-cover object-md-left-bottom"
         src={img}
         alt="banner"
